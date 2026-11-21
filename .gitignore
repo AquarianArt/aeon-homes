@@ -1,0 +1,11 @@
+node_modules/
+.env
+npm-debug.log*
+.DS_Store
+
+# runtime data (contains user accounts & password hashes)
+data/db.json
+data/db.json.tmp
+
+# admin-uploaded images
+public/images/uploads/

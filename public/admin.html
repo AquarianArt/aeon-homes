@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/images/logo.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>:root {
+  --orange: #d98b3a;
+  --orange-d: #bf7425;
+  --ink: #0b0d12;
+  --ink-2: #12151c;
+  --line: rgba(255, 255, 255, .12);
+  --muted: #b8bcc6;
+  --white: #fff;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--ink); color: var(--white); line-height: 1.6; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ---------- NAV ---------- */
+.nav {
+  position: absolute; inset: 0 0 auto 0; z-index: 50;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  padding: 24px 6vw;
+}
+.nav.solid { position: sticky; top: 0; background: rgba(11, 13, 18, .92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding: 14px 6vw; }
+.logo { display: inline-flex; align-items: center; height: 56px; }
+.logo img { height: 56px; width: auto; object-fit: contain; }
+.logo .fallback { font-weight: 700; letter-spacing: .2em; color: var(--orange); font-size: 1.4rem; }
+.nav-links { display: flex; gap: 38px; list-style: none; }
+.nav-links a { font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--orange); }
+.nav-actions { display: flex; gap: 14px; justify-content: flex-end; align-items: center; }
+.pill { border: 0; border-radius: 999px; padding: 9px 26px; font-size: .85rem; font-weight: 500; transition: transform .15s, background .2s; }
+.pill:hover { transform: translateY(-1px); }
+.pill.light { background: #fff; color: var(--orange); }
+.pill.orange { background: var(--orange); color: #fff; }
+.pill.orange:hover { background: var(--orange-d); }
+.burger { display: none; background: none; border: 0; color: #fff; font-size: 1.8rem; justify-self: end; }
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative; min-height: 100vh; display: flex; align-items: center;
+  background: #0b0d12 url('/images/Background.png') center/cover no-repeat;
+  padding: 140px 6vw 80px;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, .82) 0%, rgba(0, 0, 0, .45) 45%, rgba(0, 0, 0, 0) 100%);
+}
+.hero-inner { position: relative; max-width: 900px; }
+.hero h1 { font-size: clamp(2.6rem, 8vw, 6.4rem); font-weight: 700; line-height: 1.02; text-transform: uppercase; letter-spacing: -.01em; }
+.hero p { margin: 36px 0 42px; max-width: 620px; font-size: clamp(1rem, 1.6vw, 1.3rem); font-weight: 300; }
+.hero-btns { display: flex; gap: 28px; flex-wrap: wrap; }
+.btn {
+  border: 0; border-radius: 12px; padding: 14px 38px; font-weight: 700; font-size: 1.5rem;
+  text-transform: uppercase; letter-spacing: .02em; transition: transform .15s, box-shadow .2s;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn.orange { background: var(--orange); color: #fff; }
+.btn.white { background: #fff; color: var(--orange); }
+.btn.sm { font-size: .9rem; padding: 10px 22px; border-radius: 10px; }
+.btn.ghost { background: transparent; border: 1px solid var(--line); color: #fff; box-shadow: none; }
+
+/* ---------- SECTIONS ---------- */
+section.block { padding: 96px 6vw; }
+section.block.alt { background: var(--ink-2); }
+.eyebrow { color: var(--orange); font-weight: 600; letter-spacing: .2em; font-size: .8rem; text-transform: uppercase; }
+.title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; margin: 6px 0 14px; }
+.sub { color: var(--muted); max-width: 640px; font-weight: 300; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 26px; }
+.card { background: #171b24; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .25s, border-color .25s; position: relative; }
+.card:hover { transform: translateY(-6px); border-color: var(--orange); }
+.card .img { aspect-ratio: 16/11; background: linear-gradient(135deg, #1d2430, #0f131a); overflow: hidden; }
+.card .img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.card:hover .img img { transform: scale(1.06); }
+.badge { position: absolute; top: 14px; left: 14px; background: var(--orange); color: #fff; font-size: .7rem; font-weight: 600; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em; }
+.heart { position: absolute; top: 10px; right: 12px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(0, 0, 0, .55); color: #fff; font-size: 1.1rem; }
+.heart.on { color: #ff5d6c; }
+.card .body { padding: 18px 20px 22px; }
+.card h3 { font-size: 1.1rem; font-weight: 600; }
+.card .loc { color: var(--muted); font-size: .85rem; }
+.price { color: var(--orange); font-size: 1.35rem; font-weight: 700; margin: 8px 0; }
+.price small { font-weight: 400; color: var(--muted); font-size: .8rem; }
+.meta { display: flex; gap: 16px; color: var(--muted); font-size: .82rem; border-top: 1px solid var(--line); padding-top: 12px; margin-top: 10px; }
+.card .actions { display: flex; gap: 10px; margin-top: 14px; }
+
+/* filter bar */
+.filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+.filters input, .filters select, .field, .field select, .field textarea {
+  background: #171b24; color: #fff; border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 16px; font-family: inherit; font-size: .92rem; outline: none;
+}
+.filters input:focus, .filters select:focus, .field:focus { border-color: var(--orange); }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.tab { background: transparent; border: 1px solid var(--line); color: #fff; padding: 10px 22px; border-radius: 999px; font-size: .88rem; }
+.tab.on { background: var(--orange); border-color: var(--orange); }
+
+/* two column */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.panel { background: #171b24; border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; }
+.form { display: grid; gap: 14px; }
+.form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form label { font-size: .8rem; color: var(--muted); display: grid; gap: 6px; }
+.form input, .form select, .form textarea {
+  width: 100%; background: #0f131a; color: #fff; border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 14px; font: inherit; outline: none;
+}
+.form input:focus, .form select:focus, .form textarea:focus { border-color: var(--orange); }
+.result { background: rgba(217, 139, 58, .12); border: 1px solid var(--orange); border-radius: 12px; padding: 18px 22px; margin-top: 8px; }
+.result strong { font-size: 1.8rem; color: var(--orange); display: block; }
+ul.ticks { list-style: none; display: grid; gap: 12px; margin-top: 22px; }
+ul.ticks li::before { content: '✓'; color: var(--orange); font-weight: 700; margin-right: 12px; }
+
+footer { padding: 48px 6vw; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+/* modal + toast */
+.modal { position: fixed; inset: 0; background: rgba(0, 0, 0, .7); display: none; place-items: center; z-index: 100; padding: 20px; }
+.modal.open { display: grid; }
+.modal .box { background: #151922; border: 1px solid var(--line); border-radius: 18px; padding: 34px; width: min(440px, 100%); position: relative; max-height: 92vh; overflow: auto; }
+.modal .x { position: absolute; top: 14px; right: 18px; background: none; border: 0; color: #fff; font-size: 1.6rem; }
+.modal h2 { margin-bottom: 18px; }
+.err { color: #ff7b87; font-size: .85rem; min-height: 1.2em; }
+.toast { position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(30px); background: var(--orange); color: #fff; padding: 12px 26px; border-radius: 999px; font-weight: 500; opacity: 0; transition: .3s; z-index: 200; pointer-events: none; }
+.toast.show { opacity: 1; transform: translateX(-50%); }
+
+/* ---------- dashboard layouts (admin + user) ---------- */
+.dash { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+.side { background: var(--ink-2); border-right: 1px solid var(--line); padding: 28px 18px; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 6px; }
+.side .logo { margin-bottom: 26px; }
+.side button.nav-i { background: none; border: 0; color: var(--muted); text-align: left; padding: 12px 16px; border-radius: 10px; font-size: .92rem; }
+.side button.nav-i.on, .side button.nav-i:hover { background: rgba(217, 139, 58, .15); color: var(--orange); }
+.side .spacer { flex: 1; }
+.main { padding: 36px 4vw; overflow-x: hidden; }
+.main h1 { font-size: 1.7rem; margin-bottom: 6px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; margin: 26px 0; }
+.stat { background: #171b24; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
+.stat span { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+.stat b { display: block; font-size: 1.9rem; margin-top: 4px; }
+.stat b.o { color: var(--orange); }
+.two { display: grid; grid-template-columns: 2fr 1fr; gap: 22px; }
+.chart { display: flex; align-items: end; gap: 8px; height: 200px; margin-top: 18px; }
+.chart .col { flex: 1; display: flex; flex-direction: column; justify-content: end; align-items: center; height: 100%; gap: 6px; }
+.chart .bar { width: 100%; background: linear-gradient(to top, var(--orange-d), var(--orange)); border-radius: 6px 6px 0 0; min-height: 3px; }
+.chart small { font-size: .65rem; color: var(--muted); }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+th { text-align: left; color: var(--muted); font-weight: 500; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
+th, td { padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+td img { width: 64px; height: 44px; object-fit: cover; border-radius: 6px; background: #222; }
+.tag { padding: 3px 10px; border-radius: 999px; font-size: .72rem; background: rgba(217, 139, 58, .18); color: var(--orange); }
+.tag.green { background: rgba(60, 200, 120, .15); color: #4fd88f; }
+.imgs { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; margin-top: 20px; }
+.imgs .it { background: #171b24; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.imgs .it img { aspect-ratio: 4/3; object-fit: cover; width: 100%; background: #222; }
+.imgs .it div { padding: 8px 10px; font-size: .72rem; color: var(--muted); display: flex; justify-content: space-between; gap: 6px; align-items: center; word-break: break-all; }
+.imgs .it button { background: #3a1e22; color: #ff7b87; border: 0; border-radius: 6px; padding: 4px 8px; }
+.hidden { display: none !important; }
+.linkbtn { background: none; border: 0; color: var(--orange); font-size: .85rem; padding: 0 6px; }
+.linkbtn.del { color: #ff7b87; }
+.login-wall { min-height: 100vh; display: grid; place-items: center; padding: 20px; }
+
+@media (max-width: 960px) {
+  .nav { grid-template-columns: 1fr auto; }
+  .nav-links, .nav-actions { display: none; }
+  .nav.open .nav-links, .nav.open .nav-actions { display: flex; grid-column: 1 / -1; flex-direction: column; padding: 16px 0; gap: 14px; align-items: flex-start; }
+  .nav.open { background: rgba(11, 13, 18, .97); }
+  .burger { display: block; }
+  .split, .two { grid-template-columns: 1fr; }
+  .dash { grid-template-columns: 1fr; }
+  .side { position: static; height: auto; flex-direction: row; flex-wrap: wrap; padding: 14px; }
+  .side .logo, .side .spacer { display: none; }
+  .btn { font-size: 1.1rem; padding: 12px 26px; }
+  .form .row { grid-template-columns: 1fr; }
+}
+</style>
+<title>Admin Dashboard · AEON Homes</title></head><body>
+
+<div class="login-wall hidden" id="wall">
+  <div class="panel" style="width:min(400px,100%)">
+    <h2 style="margin-bottom:6px">Admin login</h2><p class="sub" style="margin-bottom:18px">Sign in with your administrator account.</p>
+    <form class="form" id="lf">
+      <label>Email<input name="email" type="email" required></label>
+      <label>Password<input name="password" type="password" required></label>
+      <div class="err" id="lerr"></div>
+      <button class="btn orange sm">LOGIN</button>
+      <a class="linkbtn" href="/">← Back to site</a>
+    </form>
+  </div>
+</div>
+
+<div class="dash hidden" id="app">
+  <aside class="side">
+    <a class="logo" href="/"><img src="/images/logo.jpg" alt="AEON"></a>
+    <button class="nav-i on" data-v="overview">📊 Overview</button>
+    <button class="nav-i" data-v="properties">🏠 Properties</button>
+    <button class="nav-i" data-v="images">🖼 Images</button>
+    <button class="nav-i" data-v="inquiries">✉️ Inquiries <span class="tag" id="newCount">0</span></button>
+    <button class="nav-i" data-v="users">👥 Users</button>
+    <div class="spacer"></div>
+    <a class="nav-i" href="/" style="padding:12px 16px;color:var(--muted)">↗ View site</a>
+    <button class="nav-i" id="out">Logout</button>
+  </aside>
+
+  <main class="main">
+    <!-- overview -->
+    <div data-pane="overview">
+      <h1>Site performance</h1><p class="sub">Last 14 days of traffic and activity.</p>
+      <div class="stats" id="stats"></div>
+      <div class="two">
+        <div class="panel"><b>Page views per day</b><div class="chart" id="chart"></div></div>
+        <div class="panel"><b>Top properties</b><table id="topProps" style="margin-top:10px"></table><br><b>Top pages</b><table id="topPages" style="margin-top:10px"></table></div>
+      </div>
+    </div>
+
+    <!-- properties -->
+    <div data-pane="properties" class="hidden">
+      <div class="section-head" style="margin-bottom:18px"><div><h1>Properties</h1><p class="sub">Add, edit or delete listings.</p></div><button class="btn orange sm" id="addProp">+ ADD PROPERTY</button></div>
+      <div class="panel" style="overflow:auto"><table id="propTable"></table></div>
+    </div>
+
+    <!-- images -->
+    <div data-pane="images" class="hidden">
+      <div class="section-head" style="margin-bottom:0"><div><h1>Image library</h1><p class="sub">Upload new photos, then assign them to properties. Uploaded images can be deleted.</p></div>
+        <label class="btn orange sm" style="cursor:pointer">+ UPLOAD IMAGES<input type="file" id="up" accept="image/*" multiple hidden></label></div>
+      <div class="imgs" id="imgs"></div>
+    </div>
+
+    <!-- inquiries -->
+    <div data-pane="inquiries" class="hidden">
+      <h1>Inquiries</h1><p class="sub">Bookings, sell requests and mortgage leads.</p><br>
+      <div class="panel" style="overflow:auto"><table id="inqTable"></table></div>
+    </div>
+
+    <!-- users -->
+    <div data-pane="users" class="hidden">
+      <h1>Users</h1><p class="sub">Registered accounts.</p><br>
+      <div class="panel" style="overflow:auto"><table id="userTable"></table></div>
+    </div>
+  </main>
+</div>
+
+<!-- property editor -->
+<div class="modal" id="pm"><div class="box" style="width:min(560px,100%)"><button class="x" id="pmx">×</button>
+  <h2 id="pmt">Property</h2>
+  <form class="form" id="pf">
+    <label>Title<input name="title" required></label>
+    <div class="row"><label>Type<select name="type"><option value="sale">For sale</option><option value="rent">For rent (monthly)</option></select></label><label>Price (₱)<input name="price" type="number" min="0" required></label></div>
+    <div class="row"><label>City<input name="city" required></label><label>Floor area (sqm)<input name="sqm" type="number" min="0"></label></div>
+    <div class="row"><label>Bedrooms<input name="beds" type="number" min="0"></label><label>Bathrooms<input name="baths" type="number" min="0"></label></div>
+    <label>Image<select name="image" id="imgSel"></select></label>
+    <label>Description<textarea name="description" rows="3"></textarea></label>
+    <label style="display:flex;gap:10px;align-items:center;flex-direction:row"><input type="checkbox" name="featured" style="width:auto"> Featured on home page</label>
+    <div class="err" id="perr"></div>
+    <button class="btn orange sm">SAVE</button>
+  </form></div></div>
+
+<script src="/js/app.js"></script>
+<script>
+const wall = $('#wall'), appEl = $('#app');
+let props = [], images = [], editing = null;
+
+async function boot() {
+  try {
+    const me = await api('/api/me');
+    if (me.role !== 'admin') throw new Error('not admin');
+    wall.classList.add('hidden'); appEl.classList.remove('hidden');
+    loadAll();
+  } catch { Auth.clear(); appEl.classList.add('hidden'); wall.classList.remove('hidden'); }
+}
+$('#lf').onsubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const d = await api('/api/auth/login', { method: 'POST', body: Object.fromEntries(new FormData(e.target)) });
+    if (d.user.role !== 'admin') throw new Error('This account is not an administrator.');
+    Auth.set(d.token, d.user); boot();
+  } catch (err) { $('#lerr').textContent = err.message; }
+};
+$('#out').onclick = () => { Auth.clear(); location.href = '/'; };
+
+$$('.nav-i[data-v]').forEach((b) => b.onclick = () => {
+  $$('.nav-i[data-v]').forEach((x) => x.classList.toggle('on', x === b));
+  $$('[data-pane]').forEach((p) => p.classList.toggle('hidden', p.dataset.pane !== b.dataset.v));
+});
+
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+async function loadAll() { await Promise.all([loadStats(), loadProps(), loadImages(), loadInq(), loadUsers()]); }
+
+async function loadStats() {
+  const s = await api('/api/admin/stats'), t = s.totals;
+  $('#stats').innerHTML = [
+    ['Page views', t.views, 1], ['Unique visitors', t.visitors], ['Registered users', t.users],
+    ['Properties', t.properties], ['For sale', t.forSale], ['For rent', t.forRent], ['Inquiries', t.inquiries], ['New inquiries', t.newInquiries, 1]
+  ].map(([l, v, o]) => `<div class="stat"><span>${l}</span><b class="${o ? 'o' : ''}">${v.toLocaleString()}</b></div>`).join('');
+  $('#newCount').textContent = t.newInquiries;
+  const max = Math.max(1, ...s.days.map((d) => d.views));
+  $('#chart').innerHTML = s.days.map((d) => `<div class="col" title="${d.date}: ${d.views} views, ${d.visitors} visitors"><small>${d.views}</small><div class="bar" style="height:${(d.views / max) * 85}%"></div><small>${d.date.slice(8)}</small></div>`).join('');
+  $('#topProps').innerHTML = s.topProperties.map((p) => `<tr><td>${esc(p.title)}</td><td>${p.views}</td></tr>`).join('') || '<tr><td class="sub">No property clicks yet</td></tr>';
+  $('#topPages').innerHTML = s.topPages.map((p) => `<tr><td>${esc(p.path)}</td><td>${p.views}</td></tr>`).join('') || '<tr><td class="sub">No data yet</td></tr>';
+}
+
+async function loadProps() {
+  props = await api('/api/properties');
+  $('#propTable').innerHTML = '<tr><th></th><th>Title</th><th>Type</th><th>Price</th><th>City</th><th></th></tr>' +
+    props.map((p) => `<tr><td><img src="/images/${esc(p.image)}" alt=""></td><td>${esc(p.title)} ${p.featured ? '<span class="tag">featured</span>' : ''}</td>
+      <td><span class="tag ${p.type === 'rent' ? 'green' : ''}">${p.type}</span></td><td>${peso(p.price)}</td><td>${esc(p.city)}</td>
+      <td style="white-space:nowrap"><button class="linkbtn" data-edit="${p.id}">Edit</button><button class="linkbtn del" data-del="${p.id}">Delete</button></td></tr>`).join('');
+}
+$('#propTable').onclick = async (e) => {
+  const ed = e.target.dataset.edit, del = e.target.dataset.del;
+  if (ed) openProp(props.find((p) => p.id == ed));
+  if (del && confirm('Delete this property?')) { await api('/api/admin/properties/' + del, { method: 'DELETE' }); toast('Property deleted'); loadProps(); loadStats(); }
+};
+$('#addProp').onclick = () => openProp(null);
+$('#pmx').onclick = () => $('#pm').classList.remove('open');
+
+function openProp(p) {
+  editing = p;
+  $('#pmt').textContent = p ? 'Edit property' : 'Add property';
+  const f = $('#pf'); f.reset(); $('#perr').textContent = '';
+  $('#imgSel').innerHTML = images.map((i) => `<option value="${esc(i)}">${esc(i)}</option>`).join('');
+  if (p) {
+    for (const k of ['title', 'type', 'price', 'city', 'sqm', 'beds', 'baths', 'description', 'image']) f[k].value = p[k];
+    f.featured.checked = p.featured;
+  }
+  $('#pm').classList.add('open');
+}
+$('#pf').onsubmit = async (e) => {
+  e.preventDefault();
+  const d = Object.fromEntries(new FormData(e.target)); d.featured = e.target.featured.checked;
+  try {
+    await api(editing ? '/api/admin/properties/' + editing.id : '/api/admin/properties', { method: editing ? 'PUT' : 'POST', body: d });
+    $('#pm').classList.remove('open'); toast('Saved'); loadProps(); loadStats();
+  } catch (err) { $('#perr').textContent = err.message; }
+};
+
+async function loadImages() {
+  images = await api('/api/admin/images');
+  $('#imgs').innerHTML = images.map((i) => `<div class="it"><img src="/images/${esc(i)}" alt=""><div><span>${esc(i)}</span>${i.startsWith('uploads/') ? `<button data-rm="${esc(i)}">Delete</button>` : ''}</div></div>`).join('');
+}
+$('#imgs').onclick = async (e) => {
+  const n = e.target.dataset.rm;
+  if (n && confirm('Delete this image?')) { await api('/api/admin/images?name=' + encodeURIComponent(n), { method: 'DELETE' }); toast('Image deleted'); loadImages(); }
+};
+$('#up').onchange = async (e) => {
+  const fd = new FormData(); [...e.target.files].forEach((f) => fd.append('images', f));
+  try { const r = await api('/api/admin/images', { method: 'POST', body: fd }); toast(r.length + ' image(s) uploaded'); loadImages(); } catch (err) { toast(err.message); }
+  e.target.value = '';
+};
+
+async function loadInq() {
+  const list = await api('/api/admin/inquiries');
+  $('#inqTable').innerHTML = '<tr><th>Date</th><th>Type</th><th>From</th><th>Details</th><th>Status</th></tr>' + (list.map((i) => {
+    const prop = props.find((p) => p.id === i.propertyId);
+    const det = [prop && prop.title, i.message, i.details && Object.entries(i.details).filter(([, v]) => v).map(([k, v]) => k + ': ' + v).join(', ')].filter(Boolean).map(esc).join(' · ');
+    return `<tr><td>${new Date(i.createdAt).toLocaleDateString('en-PH')}</td><td><span class="tag">${esc(i.kind)}</span></td>
+      <td>${esc(i.name)}<br><small class="sub">${esc(i.email)} ${esc(i.phone)}</small></td><td style="max-width:320px">${det}</td>
+      <td><select data-st="${i.id}" class="field">${['new', 'contacted', 'closed'].map((s) => `<option ${i.status === s ? 'selected' : ''}>${s}</option>`).join('')}</select></td></tr>`;
+  }).join('') || '<tr><td class="sub">No inquiries yet</td></tr>');
+}
+$('#inqTable').onchange = async (e) => {
+  if (e.target.dataset.st) { await api('/api/admin/inquiries/' + e.target.dataset.st, { method: 'PUT', body: { status: e.target.value } }); toast('Status updated'); loadStats(); }
+};
+async function loadUsers() {
+  const u = await api('/api/admin/users');
+  $('#userTable').innerHTML = '<tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th></tr>' +
+    u.map((x) => `<tr><td>${esc(x.name)}</td><td>${esc(x.email)}</td><td><span class="tag">${x.role}</span></td><td>${new Date(x.createdAt).toLocaleDateString('en-PH')}</td></tr>`).join('');
+}
+boot();
+</script></body></html>
